@@ -1,0 +1,35 @@
+{
+  "name": "electronicswebsitebackend",
+  "version": "1.0.0",
+  "description": "this is the backend of electronics website",
+  "keywords": [
+    "electronics",
+    "ecommerece",
+    "sell",
+    "buy"
+  ],
+  "homepage": "https://github.com/Muhammad-Ayub830/ElectronicsWebsiteBackend#readme",
+  "bugs": {
+    "url": "https://github.com/Muhammad-Ayub830/ElectronicsWebsiteBackend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muhammad-Ayub830/ElectronicsWebsiteBackend.git"
+  },
+  "license": "ISC",
+  "author": "mraks",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "cloudinary": "^2.9.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.2.3",
+    "multer": "^2.1.0",
+    "nodemon": "^3.1.14"
+  }
+}
