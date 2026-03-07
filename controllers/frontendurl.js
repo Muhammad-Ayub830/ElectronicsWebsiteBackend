@@ -1,2 +1,2 @@
- let frontEndUrl = 'http://localhost:3000/'
+ let frontEndUrl = 'https://www.haq1.com/'
  module.exports = frontEndUrl
