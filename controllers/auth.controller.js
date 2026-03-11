@@ -26,11 +26,13 @@ const login = async (req, res) => {
             process.env.jwt_secret
         );
 
-      res.cookie("token", token, {
-    httpOnly: true,
-    secure: true,       // HTTPS only
-    sameSite: "none",   // MUST be string "none"
-    maxAge: 7*24*60*60*1000
+   res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  domain: ".haq1.com",
+  path: "/",
+  maxAge: 7 * 24 * 60 * 60 * 1000
 });
         return res.status(200).json({ message: "Logged In!" });
 
