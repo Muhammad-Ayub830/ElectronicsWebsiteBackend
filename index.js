@@ -7,7 +7,7 @@ const cors = require("cors")
 const app = express()
 const cookie_parser = require("cookie-parser")
 app.use(cors({
-    origin : "https://www.haq1.com/",
+    origin : "https://www.haq1.com",
     credentials : true
 }))
 ConnectToDatabase(process.env.MONGODB_URL)
@@ -18,5 +18,5 @@ app.use("/",router)
 
 app.use("/",productRouter)
 app.listen(process.env.PORT,()=>{
-    console.log(`server started running successfully on port http://localhost:${process.env.PORT}/ `)
+    console.log(`server started running successfully on  http://localhost:${process.env.PORT}/ `)
 })
