@@ -5,7 +5,7 @@ const frontEndUrl = require("./frontendurl")
 // adding a product
 const addProduct = async  (req,res) =>{
     console.log(req.body)
-    const {title,description,price,discount,reviews,category,type} = req.body;
+    const {title,description,price,discount,reviews,category,type,tags} = req.body;
     const imagesUrls = await Promise.all(
   req.files.map(file => UploadToCloudinary(file.path))
 )
@@ -24,6 +24,7 @@ const addProduct = async  (req,res) =>{
         isFeatured,
         isBestDeal,
         isNewArrival,
+        tags,
         images : imagesUrls,
 
        })
