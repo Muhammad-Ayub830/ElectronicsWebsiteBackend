@@ -51,10 +51,10 @@ const productSchema = new mongoose.Schema({
     default: []
   },
 
-  // tags: {
-  //   type: [String],
-  //   default: []
-  // }
+  tags: {
+    type: [String],
+    default: []
+  }
 
 }, { timestamps: true })
 
