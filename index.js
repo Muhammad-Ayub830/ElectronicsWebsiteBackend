@@ -11,7 +11,7 @@ app.use(cors({
     "https://www.haq1.com",
     "https://haq1.com"
   ],
-    // origin : "http://localhost:3000",
+    // origin :  "http://localhost:3000",
     credentials : true
 }))
 ConnectToDatabase(process.env.MONGODB_URL)
