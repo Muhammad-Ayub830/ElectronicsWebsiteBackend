@@ -7,11 +7,11 @@ const cors = require("cors")
 const app = express()
 const cookie_parser = require("cookie-parser")
 app.use(cors({
-     origin: [
-    "https://www.haq1.com",
-    "https://haq1.com"
-  ],
-    // origin :  git "http://localhost:3000",
+  //    origin: [
+  //   "https://www.haq1.com",
+  //   "https://haq1.com"
+  // ],
+    origin :   "http://localhost:3000",
     credentials : true
 }))
 ConnectToDatabase(process.env.MONGODB_URL)

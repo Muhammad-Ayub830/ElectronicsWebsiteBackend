@@ -5,7 +5,7 @@ const frontEndUrl = require("./frontendurl")
 // adding a product
 const addProduct = async  (req,res) =>{
     console.log(req.body)
-    const {title,description,price,discount,reviews,category,type,tags} = req.body;
+    const {title,description,price,discount,subCategory,reviews,category,type,tags} = req.body;
     const imagesUrls = await Promise.all(
   req.files.map(file => UploadToCloudinary(file.path))
 )
@@ -26,7 +26,7 @@ const addProduct = async  (req,res) =>{
         isNewArrival,
         tags,
         images : imagesUrls,
-
+        subCategory
        })
        console.log('product saves successfully!')
     } catch (error) {

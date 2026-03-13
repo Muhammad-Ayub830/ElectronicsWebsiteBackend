@@ -29,6 +29,10 @@ const productSchema = new mongoose.Schema({
     required: true
   },
 
+  subCategory : {
+    required : true,
+    type : String
+  },
 
 
   isNewArrival: {
