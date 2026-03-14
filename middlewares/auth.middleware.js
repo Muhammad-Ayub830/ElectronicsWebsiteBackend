@@ -30,7 +30,7 @@ const authmiddleware = async (req,res,next)=>{
 const customerAuthMiddleware = async (req,res,next)=>{
     const token = req.cookies.token
     if(!token){
-          return res.status(401).json({message:"Unauthorized!"})
+          return res.status(401).json({message:"Unauthorized!",redirect:'/admin/login'})
     }
     try{
          const decoded = await jwt.verify(token,process.env.jwt_secret)
@@ -38,7 +38,7 @@ const customerAuthMiddleware = async (req,res,next)=>{
     next()
     }
     catch (error) {
-                return res.status(401).json({message:"Unauthorized!"})
+                return res.status(401).json({message:"Unauthorized!",redirect:'/admin/login'})
 
     }
 }

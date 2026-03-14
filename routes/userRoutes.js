@@ -7,5 +7,5 @@ userrouter.post("/login",login)
 userrouter.get("/verify",authmiddleware,auth)
 userrouter.get("/verify-customer",customerAuthMiddleware,authcustomer)
 userrouter.get("/logout",authmiddleware,logout)
-userrouter.post("/signUP",authmiddleware,signUp)
+userrouter.post("/signUP",signUp)
 module.exports = userrouter

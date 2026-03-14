@@ -22,14 +22,15 @@ const signUp = async (req,res)=>{
         
      await   res.cookie("token",token,{
             maxAge : 7*24*60*60*1000,
-            sameSite : "none",
+            sameSite :'none',
             secure : true,
             httpOnly: true
         })
-        const path = newUser.role == 'admin' ? '/admin' : '/track_order'
+        const path = newUser.role == 'admin' ? '/admin' : '/placeOrder'
      return res.status(201).json({success:true,message:"Signed Up",redirect:path})
 
     } catch (error) {
+        console.log('hello')
             return res.status(500).json({success:false,message:error.message})
 
     }
@@ -67,7 +68,7 @@ const login = async (req, res) => {
   path: "/",
   maxAge: 7 * 24 * 60 * 60 * 1000
 });
-    const path = userr.role == 'admin' ? '/admin' : '/track_order';
+    const path = userr.role == 'admin' ? '/admin' : '/placeOrder';
         return res.status(200).json({ message: "Logged In!",redirect:path });
 
     } catch (error) {
