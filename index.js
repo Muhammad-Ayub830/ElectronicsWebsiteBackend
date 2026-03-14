@@ -13,7 +13,7 @@ app.use(cors({
     "https://haq1.com"
   ],
     // origin :   "http://localhost:3000",
-    credentials : true
+    // credentials : true
 }))
 ConnectToDatabase(process.env.MONGODB_URL)
 app.use(cookie_parser())

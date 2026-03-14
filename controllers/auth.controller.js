@@ -1,5 +1,39 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
+// sign up
+const signUp = async (req,res)=>{
+        const {username,password,email} = req.body;
+        if(!username || !password || !email){
+              return res.status(500).json({success:false,message:"Credentials messing"})
+        }
+        const isUserExist = await User.findOne({username})
+        if(isUserExist){
+                return res.status(500).json({success:false,message:"Username not available"})
+        }
+
+    try {
+        const newUser = await User.create({
+            username,
+            password,
+            email
+        })
+        const token = await jwt.sign(
+            { userId : newUser._id,role:newUser.role},process.env.jwt_secret)
+        
+     await   res.cookie("token",token,{
+            maxAge : 7*24*60*60*1000,
+            sameSite : "none",
+            secure : true,
+            httpOnly: true
+        })
+        const path = newUser.role == 'admin' ? '/admin' : '/track_order'
+     return res.status(201).json({success:true,message:"Signed Up",redirect:path})
+
+    } catch (error) {
+            return res.status(500).json({success:false,message:error.message})
+
+    }
+}
 
 // login
 const login = async (req, res) => {
@@ -22,7 +56,7 @@ const login = async (req, res) => {
 
         // password is correct
         const token = jwt.sign(
-            { userId: userr._id },
+            { userId: userr._id, role: userr.role },
             process.env.jwt_secret
         );
 
@@ -33,7 +67,8 @@ const login = async (req, res) => {
   path: "/",
   maxAge: 7 * 24 * 60 * 60 * 1000
 });
-        return res.status(200).json({ message: "Logged In!" });
+    const path = userr.role == 'admin' ? '/admin' : '/track_order';
+        return res.status(200).json({ message: "Logged In!",redirect:path });
 
     } catch (error) {
         console.log(error);
@@ -43,8 +78,14 @@ const login = async (req, res) => {
 
 // checking authroization
 const auth = async (req,res)=>{
-    return res.status(200).json({message:"Authenicated",status:true})
+    console.log(req.user)
+    return res.status(200).json({message:"Authenicated",status:true ,role:req.user.role})
 }
+const authcustomer = async (req,res)=>{
+    console.log(req.user)
+    return res.status(200).json({message:"Authenicated",status:true ,role:req.user.role})
+}
+
 // log out
 const logout = async (req,res)=>{
     try {
@@ -60,4 +101,4 @@ const logout = async (req,res)=>{
   
 }
 
-module.exports = { login,auth,logout };
+module.exports = { login,auth,logout,signUp,authcustomer };

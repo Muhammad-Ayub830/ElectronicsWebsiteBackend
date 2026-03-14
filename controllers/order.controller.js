@@ -9,6 +9,7 @@ const place_order = async (req,res) =>{
    let orderid =  "ORD" + Date.now()
  try {
         const order = await Order.create({
+            userId : req.user.userId,
             customerName,
             customerEmail,
             orderNumber : orderid,
@@ -23,7 +24,7 @@ const place_order = async (req,res) =>{
         })
        return  res.status(201).json({success:true,message:"order placed Successfully!"})
     } catch (error) {
-         console.log(error)
+        //  console.log(error)
      return   res.status(500).json({success:false,message:error.message})
        
     }
@@ -38,6 +39,14 @@ const get_orders = async (req,res)=>{
         return res.status(500).json({success:false,message:"fetched failed",error:error.message})
     }
 }
-module.exports = {place_order,get_orders}
+const get_my_orders = async (req,res)=>{
+    try {
+        const orders = await Order.find({userId:req.user.userId});
+    return     res.status(200).json({success:true,message:"data fetched successfully",data:orders})
+    } catch (error) {
+        return res.status(500).json({success:false,message:"fetched failed",error:error.message})
+    }
+}
+module.exports = {place_order,get_orders,get_my_orders}
 
 
